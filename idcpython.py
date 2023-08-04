@@ -143,3 +143,27 @@ Aug 03, 2023, 8:47 AM
 
 please test these scripts if its working then we can create APIs.
  
+import boto3
+
+def remove_access(user_id):
+    sso_admin_client = boto3.client('sso-admin')
+    instance_arn = 'arn:aws:sso:::instance/sso-instance-id'
+    permission_set_arn = 'arn:aws:sso:::permissionSet/permission-set-id'
+    
+    response = sso_admin_client.delete_account_assignment(
+        InstanceArn=instance_arn,
+        TargetId=user_id,
+        TargetType='USER',
+        PermissionSetArn=permission_set_arn,
+        PrincipalType='USER',
+        PrincipalId=user_id
+    )
+    
+    return response
+
+# Lambda handler
+if __name__ == "__main__":
+   
+    user_id = ""    
+    response = remove_access(user_id)
+    print(response)
