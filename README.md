@@ -34,3 +34,16 @@ https://vyjow5c5mk.execute-api.eu-central-1.amazonaws.com/add-user-group?user=av
 Add Permission to the PermissionSet:
 
 https://vyjow5c5mk.execute-api.eu-central-1.amazonaws.com/attach-policy-permission-set?permisionArn=arn:aws:sso:::permissionSet/ssoins-698759770ce5a35e/ps-e7c813ef49a4b795&&PolicyArn=arn:aws:iam::aws:policy/CloudSearchFullAccess
+
+
+
+
+
+
+
+
+https://zbcrbm2j6c.execute-api.eu-central-1.amazonaws.com/add-permission?user=agborntuibate@idc.com&&permissionSetArn=arn:aws:sso:::permissionSet/ssoins-79071ef5f2a874d9/ps-c44ec5bf2930a163
+Ehtisham A.
+Aug 09, 2023, 9:47 AM
+
+https://zbcrbm2j6c.execute-api.eu-central-1.amazonaws.com/remove-permission?user=agborntuibate@idc.com&&permissionSetArn=arn:aws:sso:::permissionSet/ssoins-79071ef5f2a874d9/ps-c44ec5bf2930a163
