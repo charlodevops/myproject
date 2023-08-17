@@ -1,3 +1,6 @@
+engr.aliawan18@gmail.com
+
+
 Development
     * User disable functionality test in OKTA. SP - 0.5
 On request of the network team, we need to check what happens when the Okta user is deactivated. Check if he loses access
