@@ -1,0 +1,77 @@
+Development
+    * User disable functionality test in OKTA. SP - 0.5
+On request of the network team, we need to check what happens when the Okta user is deactivated. Check if he loses access
+    * AWS Support case to check for user auditing
+Create an AWS Support case and track it. On request of the network team, we need to figure out how we can audit the users in  IDC. Eg- how to find out what permissions does a user havein a detailed manner
+    * Create a user check on IDC before adding permissions to an account. SP – 1
+Create a script to check users on IDC before adding permission to the account..
+    * Create a status check on the user, to confirm if he is added to the account . SP – 2
+The current POC functionality tries to add the user. We need to create a status check to see if the user was assigned the permissions successfully or not
+    * Update Lambda/API to create a Group and validation. Sp – 2
+Modify and update the python script that will create group and validate the group.
+    * Update Lambda/API to destroy a group and validation. Sp – 2
+               Modify and update the python script that will delete group and validate the group.
+    * Update Lambda/API to add permission set to a new group and validation. SP -2
+In POC we covered how a permission is added to a user. Since we are creating IDC groups we need to add permission to those groups as well
+    * Update Lambda/API to remove permission set from a group and validation. SP -2
+In POC we covered how a permission is removed from a user. Since we are creating IDC groups we need to add remove permissions to those groups as well
+ 
+    * Identity federation Groups/roles in Federation and copy them in IDC
+Right now the permission sets in IDC are custom and were created for testing. But we need to identify all the roles in current federation and create permission sets of them in IDC as well
+    * AWS Lambda roles permission cleanup. SP – 1
+The Lambda function seems to have a lot of permissions assigned which are not really required. Cleanup those permissions so we follow the rules of least privilege
+    *  Update lambda to add permission sets to a new accounts in the organisation. SP – 2
+When a new account is added to an organization, there would no permission sets assigned to the account. Update lambda to check any such accounts and add permission to those
+    * Test the code when new accounts are added/removed from Org. Sp – 2
+This will test the functionality of the code when adding and removing AWS accounts from our main AWS Organization. When accounts are decommed the IDC should remove all  the users from it. Test the functionality
+    * Check if terraform allows to create Permission sets/S3 policies/Api gateway/Lambda through terraform. SP – 2
+Right all the resources like lambda and api gateway are deployed manually in the console. We need to find out if they can be created through terraform. Find all the relevant web links
+    * Create permission sets and S3 policies through terraform (If applicable). SP – 5
+Deploy Permission sets through terraform  
+    * Create the lambda function through terraform (If Applicable). SP – 5
+Deployment of lambda function with terraform.
+    * Deploy API gateway through terraform(If applicable). SP – 5
+Deploy Api Gateway with terraform.
+    * SNOW Form/IGA – Find details below 
+ 
+Migration to AWS IDC
+* Create the IDC app in okta. Sp - ? (Charles)
+Integrate Okta with AWS IAM Identity Center to manage users, roles, and multi-account access.
+* Create IAM Identity Center Application in Okta
+* Configure/Change the identity source in Identity Center
+* Configure SAML 2.0 for IAM Identity Center
+* Configure Provision in Okta
+* Assign User/Groups to IAM Identity Center Application in Okta
+* Assign access to AWS Accounts through permission Sets.
+* Test access
+ 
+* Deploy IDC in AWS Org account. Sp -? (Charles)
+* Setup Identity Center and various components
+* -IAM Identity Center prerequisites
+* -Enable AWS Organization
+* -Enable trusted access
+* -Enable delegated administration 
+* -Choose your identity source 
+* Deploy the permission sets and policies through terraform in new repo (Change Process). Sp – 3
+* The permission sets were created through terraform in DevIdentityCenter account. Deploy it in our prod Organization through terraform
+* Create lambda function through terraform in new repo. (Change Process).  SP – 3
+* The lambda function created through terraform in DevIdentityCenter account. Deploy it in our prod Organization through terraform
+* Deploy API gateway in the new repo through terraform. (Change Process).  SP – 3
+* The api gateway was created through terraform in DevIdentityCenter account. Deploy it in our prod Organization through terraform
+* List of all users using federation and their roles. Sp – 3 (?)
+* To list all the current GTS users in the current federation services and their roles
+* Assigning the new app to the current users. SP – 3 (?)
+* Add users to the AWS IDC via provisioning in Okta
+* Assign the current roles to users and validation. SP – 3 (?)
+* Align the roles that each user has from federation service and test validation
+* Creation of IDC Groups for broader permissions. SP – 3
+*  Create Groups like “aws_administrator”,”tdo”,”finanace” in prod Organization IDC. More groups can be found in the Dynamo DB in Shared Services
+* Validation of the user roles over a wider audience. SP – 2
+* To Test and validate user roles in AWS IDC   Check if those users have the same permissions they had in the federation. Needs to be done over a wider audience and different teams
+* Send communication of the new IDC to AWS Users
+* To alert the AWS end users with the new AWS IDC via email.
+* Change to stop the federation servers
+* To Create a CHG ticket to stop the current federation services
+* Change to decommission the federation servers
+* To Create a CHG ticket to decommission the current federation services.
+*  
