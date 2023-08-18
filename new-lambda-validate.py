@@ -14,7 +14,7 @@ from aws_lambda_powertools.event_handler.api_gateway import (
 
 client = boto3.client('identitystore')
 sso_client = boto3.client('sso-admin')
-instance_arn = 'arn:aws:sso:::instance/ssoins-79071ef5f2a874d9'
+instance_arn = 'arn:aws:sso:::instance/ssoins-1234567890'
 app = ApiGatewayResolver(proxy_type=ProxyEventType.APIGatewayProxyEventV2)
         
 
@@ -38,7 +38,7 @@ def getUserId(username):
     idc = boto3.client('identitystore')
     try:
         response_user=idc.get_user_id(
-            IdentityStoreId='d-9267420026',
+            IdentityStoreId='d-1782672548',
             AlternateIdentifier={
                 'UniqueAttribute': {
                     'AttributePath': 'emails.value',
@@ -66,7 +66,7 @@ def addPermToUser():
     
     try:
         response_acc_assign = sso_client.create_account_assignment(
-            InstanceArn='arn:aws:sso:::instance/ssoins-79071ef5f2a874d9',
+            InstanceArn='arn:aws:sso:::instance/ssoins-1234567890',
             TargetId=acc,
             TargetType='AWS_ACCOUNT',
             PermissionSetArn=permission_set_arn,
@@ -103,7 +103,7 @@ def addPermToUser():
                         }
                         return Response(status_code=success_response["statusCode"],content_type="application/json",body=success_response["body"])
                             
-        return Response(status_code=500,content_type="application/json",body="An Error Occurred. Please reach out to CIAS")
+        return Response(status_code=500,content_type="application/json",body="An Error Occurred. Please reach out to IAM")
     except Exception as e:
         print(e)
         return Response(status_code=500,content_type="application/json",body="Something went wrong. Automation ended in failure.")
@@ -121,7 +121,7 @@ def removePermFromUser():
     
     try:
         response_acc_user_delete = sso_client.delete_account_assignment(
-            InstanceArn='arn:aws:sso:::instance/ssoins-79071ef5f2a874d9',
+            InstanceArn='arn:aws:sso:::instance/ssoins-1234567890',
             TargetId=acc,
             TargetType='AWS_ACCOUNT',
             PermissionSetArn=permission_set_arn,
@@ -158,10 +158,10 @@ def removePermFromUser():
                         }
                         return Response(status_code=success_response["statusCode"],content_type="application/json",body=success_response["body"])
                             
-            return Response(status_code=500,content_type="application/json",body="An Error Occurred. Please reach out to CIAS")
+            return Response(status_code=500,content_type="application/json",body="An Error Occurred. Please reach out to IAM")
     except Exception as e:
         print(e)
-        return Response(status_code=500,content_type="application/json",body="Something went wrong. Automation ended in failure. Reach out to CIAS")
+        return Response(status_code=500,content_type="application/json",body="Something went wrong. Automation ended in failure. Reach out to IAM")
         
 
 def lambda_handler(event, context):
