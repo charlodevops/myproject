@@ -14,7 +14,7 @@ from aws_lambda_powertools.event_handler.api_gateway import (
 
 client = boto3.client('identitystore')
 sso_client = boto3.client('sso-admin')
-instance_arn = 'arn:aws:sso:::instance/ssoins-1234567890'
+instance_arn = 'arn:aws:sso:::instance/ssoins-79071ef5f2a874d9'
 app = ApiGatewayResolver(proxy_type=ProxyEventType.APIGatewayProxyEventV2)
         
 
@@ -38,7 +38,7 @@ def getUserId(username):
     idc = boto3.client('identitystore')
     try:
         response_user=idc.get_user_id(
-            IdentityStoreId='d-1782672548',
+            IdentityStoreId='d-9267420026',
             AlternateIdentifier={
                 'UniqueAttribute': {
                     'AttributePath': 'emails.value',
@@ -66,7 +66,7 @@ def addPermToUser():
     
     try:
         response_acc_assign = sso_client.create_account_assignment(
-            InstanceArn='arn:aws:sso:::instance/ssoins-1234567890',
+            InstanceArn='arn:aws:sso:::instance/ssoins-79071ef5f2a874d9',
             TargetId=acc,
             TargetType='AWS_ACCOUNT',
             PermissionSetArn=permission_set_arn,
@@ -121,7 +121,7 @@ def removePermFromUser():
     
     try:
         response_acc_user_delete = sso_client.delete_account_assignment(
-            InstanceArn='arn:aws:sso:::instance/ssoins-1234567890',
+            InstanceArn='arn:aws:sso:::instance/ssoins-79071ef5f2a874d9',
             TargetId=acc,
             TargetType='AWS_ACCOUNT',
             PermissionSetArn=permission_set_arn,
